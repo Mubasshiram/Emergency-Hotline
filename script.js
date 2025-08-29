@@ -40,6 +40,24 @@ document.getElementById("card-container").addEventListener("click", function(e) 
     }
 })
 
+//copy
+document.getElementById("card-container").addEventListener("click", function (e) {
+    if (e.target.className.includes("copy") || e.target.parentNode.className.includes("copy")) {
+        
+        let copyBtnContainer=e.target.className.includes("copyB") ? e.target : e.target.parentNode
+        const copyText=copyBtnContainer.parentNode.parentNode.querySelector("h1").innerText
+        navigator.clipboard.writeText(copyText)
+        alert("নাম্বার কপি হয়েছে :" + copyText)
+        document.getElementById("copyCount").innerText = parseInt(document.getElementById("copyCount").innerText) + 1
+    }
+})
+
+
+
+    //clean
+    document.getElementById("clr").addEventListener("click", function (e) {
+    document.getElementById("history").innerHTML = ""
+})
 
 
 
