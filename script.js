@@ -1,0 +1,59 @@
+document.getElementById("card-container").addEventListener("click",function (e) {
+
+    if (e.target.className.includes("heart")) {
+        document.getElementById("heart-count").innerText = Number(document.getElementById("heart-count").innerText) + 1;
+    }
+})
+
+//call
+document.getElementById("card-container").addEventListener("click", function(e) {
+    if (e.target.className.includes("call") || e.target.parentNode.className.includes("call")) {
+
+        let btnContainer=e.target.className.includes("butn") ? e.target : e.target.parentNode
+
+        const name=btnContainer.parentNode.parentNode.children[2].innerText
+        const number=btnContainer.parentNode.parentNode.children[3].innerText
+        if (parseInt(document.getElementById("coin-number").innerText) > 19) {
+            alert("Calling " + name + " " + number)
+            document.getElementById("coin-number").innerText = parseInt(document.getElementById("coin-number").innerText) - 20
+
+            const card=btnContainer.parentNode.parentNode
+            const banglaName=card.querySelector("h2").innerText;
+            const time=new Date().toLocaleTimeString()
+
+
+            const div=document.createElement("div")
+            div.innerHTML=`
+        <div class="mt-7 flex flex-col xl:flex-row justify-between items-center">
+                <div class="">
+                <h3>${banglaName}</h3>
+                <p class="text-[#5c5c5c]">${number}</p>
+            </div>
+            <p class="mt-3 xl:mt-0">${time}</p>
+            </div>
+            `
+            document.getElementById("history").appendChild(div);
+        }
+        else
+            alert("আপনার পর্যাপ্ত কয়েন নেই! কল করতে কমপক্ষে ২০ কয়েন লাগবে")
+
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
